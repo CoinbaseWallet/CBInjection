@@ -2,8 +2,8 @@
 
 import Foundation
 
-/// Represents kind of injection
-public enum InjectionKind {
+/// Represents the support object scope
+public enum InjectionScope {
     /// This means a new instance is created every time the dependency is resolved
     case transient
 

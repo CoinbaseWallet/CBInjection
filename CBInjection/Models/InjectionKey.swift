@@ -10,8 +10,8 @@ public final class InjectionKey<T>: InjectionKeys {
     /// Injection which contains the code for resolving a dependency
     let injection: DependencyInjection?
 
-    /// Kind of injection. Singleton vs transient
-    let kind: InjectionKind
+    /// Object scope. Singleton vs transient
+    let scope: InjectionScope
 
     /// List of parameters to pass to injection conformer
     let parameters: [InjectionParameterName: Any]
@@ -24,11 +24,11 @@ public final class InjectionKey<T>: InjectionKeys {
     public required init(
         uuid: String = NSUUID().uuidString,
         using injectionObjectType: DependencyInjection.Type,
-        kind: InjectionKind,
+        scope: InjectionScope,
         parameters: [InjectionParameterName: Any] = [:]
     ) {
         injection = injectionObjectType.init()
-        self.kind = kind
+        self.scope = scope
         self.parameters = parameters
         closure = nil
         super.init(uuid: uuid)
@@ -37,11 +37,11 @@ public final class InjectionKey<T>: InjectionKeys {
     /// Closure-based constructor
     public init(
         uuid: String = NSUUID().uuidString,
-        kind: InjectionKind,
+        scope: InjectionScope,
         parameters: [InjectionParameterName: Any] = [:],
         closure: @escaping InjectionKeyClosure
     ) {
-        self.kind = kind
+        self.scope = scope
         self.parameters = parameters
         self.closure = closure
         injection = nil

@@ -111,30 +111,30 @@ class DependenciesTests: XCTestCase {
 private extension InjectionKeys {
     static let dummySingleton = InjectionKey<DummyDependency>(
         using: DummyDependencyInjection.self,
-        kind: .singleton
+        scope: .singleton
     )
 
     static let dummyTransient = InjectionKey<DummyDependency>(
         using: DummyDependencyInjection.self,
-        kind: .transient
+        scope: .transient
     )
 
     static let dummyInjectedTransient = InjectionKey<DummyInjectedTransient>(
         using: DummyInjectedTransientInjection.self,
-        kind: .transient
+        scope: .transient
     )
 
     static let dummyInjectedTransientInSingleton = InjectionKey<DummyInjectedTransient>(
         using: DummyInjectedTransientInjection.self,
-        kind: .singleton
+        scope: .singleton
     )
 
-    static let closureStyleTransientKey = InjectionKey<DummyInjectedTransient>(kind: .transient) { dependencies in
+    static let closureStyleTransientKey = InjectionKey<DummyInjectedTransient>(scope: .transient) { dependencies in
         let dep = try dependencies.provide(.dummyTransient)
         return DummyInjectedTransient(id: expecetdID, name: expectedName, date: Date(), transientDep: dep)
     }
 
-    static let closureStyleSingletontKey = InjectionKey<DummyInjectedTransient>(kind: .singleton) { dependencies in
+    static let closureStyleSingletontKey = InjectionKey<DummyInjectedTransient>(scope: .singleton) { dependencies in
         let dep = try dependencies.provide(.dummyTransient)
         return DummyInjectedTransient(id: expecetdID, name: expectedName, date: Date(), transientDep: dep)
     }
