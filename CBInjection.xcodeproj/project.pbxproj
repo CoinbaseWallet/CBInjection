@@ -11,7 +11,7 @@
 		E74DE56122333E83008CC5EE /* DependenciesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74DE56022333E83008CC5EE /* DependenciesTests.swift */; };
 		E74DE57D22333F9D008CC5EE /* InjectionParameterName.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74DE56D22333F9D008CC5EE /* InjectionParameterName.swift */; };
 		E74DE57E22333F9D008CC5EE /* InjectionKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74DE56E22333F9D008CC5EE /* InjectionKey.swift */; };
-		E74DE57F22333F9D008CC5EE /* InjectionKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74DE56F22333F9D008CC5EE /* InjectionKind.swift */; };
+		E74DE57F22333F9D008CC5EE /* InjectionScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74DE56F22333F9D008CC5EE /* InjectionScope.swift */; };
 		E74DE58022333F9D008CC5EE /* CBInjection.h in Headers */ = {isa = PBXBuildFile; fileRef = E74DE57122333F9D008CC5EE /* CBInjection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E74DE58222333F9D008CC5EE /* DependenciesError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74DE57422333F9D008CC5EE /* DependenciesError.swift */; };
 		E74DE58322333F9D008CC5EE /* UINavigationController+Injectables.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74DE57622333F9D008CC5EE /* UINavigationController+Injectables.swift */; };
@@ -37,7 +37,7 @@
 		E74DE56222333E83008CC5EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E74DE56D22333F9D008CC5EE /* InjectionParameterName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InjectionParameterName.swift; sourceTree = "<group>"; };
 		E74DE56E22333F9D008CC5EE /* InjectionKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InjectionKey.swift; sourceTree = "<group>"; };
-		E74DE56F22333F9D008CC5EE /* InjectionKind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InjectionKind.swift; sourceTree = "<group>"; };
+		E74DE56F22333F9D008CC5EE /* InjectionScope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InjectionScope.swift; sourceTree = "<group>"; };
 		E74DE57122333F9D008CC5EE /* CBInjection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBInjection.h; sourceTree = "<group>"; };
 		E74DE57222333F9D008CC5EE /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E74DE57422333F9D008CC5EE /* DependenciesError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DependenciesError.swift; sourceTree = "<group>"; };
@@ -111,7 +111,7 @@
 			children = (
 				E74DE56D22333F9D008CC5EE /* InjectionParameterName.swift */,
 				E74DE56E22333F9D008CC5EE /* InjectionKey.swift */,
-				E74DE56F22333F9D008CC5EE /* InjectionKind.swift */,
+				E74DE56F22333F9D008CC5EE /* InjectionScope.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -268,7 +268,7 @@
 			files = (
 				E74DE58322333F9D008CC5EE /* UINavigationController+Injectables.swift in Sources */,
 				E74DE57D22333F9D008CC5EE /* InjectionParameterName.swift in Sources */,
-				E74DE57F22333F9D008CC5EE /* InjectionKind.swift in Sources */,
+				E74DE57F22333F9D008CC5EE /* InjectionScope.swift in Sources */,
 				E74DE58722333F9D008CC5EE /* Dependencies.swift in Sources */,
 				E74DE58422333F9D008CC5EE /* UIViewController+Injectables.swift in Sources */,
 				E74DE57E22333F9D008CC5EE /* InjectionKey.swift in Sources */,

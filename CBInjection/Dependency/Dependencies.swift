@@ -19,7 +19,7 @@ public final class Dependencies {
     ///
     /// - Returns: Instance of the requested dependency or an error is thrown
     public func provide<T>(_ key: InjectionKey<T>) throws -> T {
-        switch key.kind {
+        switch key.scope {
         case .singleton:
             singletonLock.lock()
             defer { singletonLock.unlock() }
