@@ -92,7 +92,6 @@
 				E74DE57522333F9D008CC5EE /* Extensions */,
 				E74DE56C22333F9D008CC5EE /* Models */,
 				E74DE57022333F9D008CC5EE /* Module */,
-				E74DE57822333F9D008CC5EE /* Protocols */,
 			);
 			path = CBInjection;
 			sourceTree = "<group>";
@@ -109,6 +108,7 @@
 		E74DE56C22333F9D008CC5EE /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E74DE57922333F9D008CC5EE /* DependencyInjection.swift */,
 				E74DE56D22333F9D008CC5EE /* InjectionParameterName.swift */,
 				E74DE56E22333F9D008CC5EE /* InjectionKey.swift */,
 				E74DE56F22333F9D008CC5EE /* InjectionScope.swift */,
@@ -140,14 +140,6 @@
 				E74DE57722333F9D008CC5EE /* UIViewController+Injectables.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		E74DE57822333F9D008CC5EE /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				E74DE57922333F9D008CC5EE /* DependencyInjection.swift */,
-			);
-			path = Protocols;
 			sourceTree = "<group>";
 		};
 		E74DE57B22333F9D008CC5EE /* Dependency */ = {

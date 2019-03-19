@@ -17,7 +17,7 @@ class DependenciesTests: XCTestCase {
         XCTAssertEqual(expecetdID, actual2.id)
         XCTAssertEqual(expectedName, actual2.name)
 
-        XCTAssertEqual(actual.date, actual2.date)
+        XCTAssertEqual(actual.uuid, actual2.uuid)
     }
 
     func testTransient() throws {
@@ -30,7 +30,7 @@ class DependenciesTests: XCTestCase {
         XCTAssertEqual(expecetdID, actual2.id)
         XCTAssertEqual(expectedName, actual2.name)
 
-        XCTAssertNotEqual(actual.date, actual2.date)
+        XCTAssertNotEqual(actual.uuid, actual2.uuid)
     }
 
     func testInjectedTransient() throws {
@@ -47,7 +47,7 @@ class DependenciesTests: XCTestCase {
         XCTAssertEqual(expecetdID, actual2.transientDep.id)
         XCTAssertEqual(expectedName, actual2.transientDep.name)
 
-        XCTAssertNotEqual(actual.date, actual2.date)
+        XCTAssertNotEqual(actual.uuid, actual2.uuid)
     }
 
     func testInjectedTransientInSingleton() throws {
@@ -64,8 +64,8 @@ class DependenciesTests: XCTestCase {
         XCTAssertEqual(expecetdID, actual2.transientDep.id)
         XCTAssertEqual(expectedName, actual2.transientDep.name)
 
-        XCTAssertEqual(actual.date, actual2.date)
-        XCTAssertEqual(actual.transientDep.date, actual2.transientDep.date)
+        XCTAssertEqual(actual.uuid, actual2.uuid)
+        XCTAssertEqual(actual.transientDep.uuid, actual2.transientDep.uuid)
         XCTAssertEqual(actual.transientDep.id, actual2.transientDep.id)
         XCTAssertEqual(actual.transientDep.name, actual2.transientDep.name)
     }
@@ -84,8 +84,8 @@ class DependenciesTests: XCTestCase {
         XCTAssertEqual(expecetdID, actual2.transientDep.id)
         XCTAssertEqual(expectedName, actual2.transientDep.name)
 
-        XCTAssertEqual(actual.date, actual2.date)
-        XCTAssertEqual(actual.transientDep.date, actual2.transientDep.date)
+        XCTAssertEqual(actual.uuid, actual2.uuid)
+        XCTAssertEqual(actual.transientDep.uuid, actual2.transientDep.uuid)
         XCTAssertEqual(actual.transientDep.id, actual2.transientDep.id)
         XCTAssertEqual(actual.transientDep.name, actual2.transientDep.name)
     }
@@ -104,7 +104,7 @@ class DependenciesTests: XCTestCase {
         XCTAssertEqual(expecetdID, actual2.transientDep.id)
         XCTAssertEqual(expectedName, actual2.transientDep.name)
 
-        XCTAssertNotEqual(actual.date, actual2.date)
+        XCTAssertNotEqual(actual.uuid, actual2.uuid)
     }
 }
 
@@ -131,37 +131,40 @@ private extension InjectionKeys {
 
     static let closureStyleTransientKey = InjectionKey<DummyInjectedTransient>(scope: .transient) { dependencies in
         let dep = try dependencies.provide(.dummyTransient)
-        return DummyInjectedTransient(id: expecetdID, name: expectedName, date: Date(), transientDep: dep)
+        return DummyInjectedTransient(id: expecetdID, name: expectedName, uuid: UUID().uuidString, transientDep: dep)
     }
 
     static let closureStyleSingletontKey = InjectionKey<DummyInjectedTransient>(scope: .singleton) { dependencies in
         let dep = try dependencies.provide(.dummyTransient)
-        return DummyInjectedTransient(id: expecetdID, name: expectedName, date: Date(), transientDep: dep)
+        return DummyInjectedTransient(id: expecetdID, name: expectedName, uuid: UUID().uuidString, transientDep: dep)
     }
 }
 
 struct DummyInjectedTransient {
     let id: Int
     let name: String
-    let date: Date
+    let uuid: String
     let transientDep: DummyDependency
 }
 
 struct DummyDependency {
     let id: Int
     let name: String
-    let date: Date
+    let uuid: String
 }
 
-final class DummyDependencyInjection: DependencyInjection {
-    func provide(using _: Dependencies, parameters: [InjectionParameterName: Any]) throws -> Any {
-        return DummyDependency(id: expecetdID, name: expectedName, date: Date())
+final class DummyDependencyInjection: DependencyInjection<DummyDependency> {
+    override func provide(using _: Dependencies, parameters: [InjectionParameterName: Any]) throws -> DummyDependency {
+        return DummyDependency(id: expecetdID, name: expectedName, uuid: UUID().uuidString)
     }
 }
 
-final class DummyInjectedTransientInjection: DependencyInjection {
-    func provide(using dependencies: Dependencies, parameters _: [InjectionParameterName: Any]) throws -> Any {
+final class DummyInjectedTransientInjection: DependencyInjection<DummyInjectedTransient> {
+    override func provide(
+        using dependencies: Dependencies,
+        parameters _: [InjectionParameterName: Any]
+    ) throws -> DummyInjectedTransient {
         let dep = try dependencies.provide(.dummyTransient)
-        return DummyInjectedTransient(id: expecetdID, name: expectedName, date: Date(), transientDep: dep)
+        return DummyInjectedTransient(id: expecetdID, name: expectedName, uuid: UUID().uuidString, transientDep: dep)
     }
 }

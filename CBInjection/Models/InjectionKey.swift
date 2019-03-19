@@ -2,13 +2,10 @@
 
 import Foundation
 
-/// Closure used to resolve dependency
-public typealias InjectionKeyClosure = ((Dependencies) throws -> Any)
-
 /// Represents and injection key used indentify a dependency.
 public final class InjectionKey<T>: InjectionKeys {
     /// Injection which contains the code for resolving a dependency
-    let injection: DependencyInjection?
+    let injection: DependencyInjection<T>?
 
     /// Object scope. Singleton vs transient
     let scope: InjectionScope
@@ -18,16 +15,16 @@ public final class InjectionKey<T>: InjectionKeys {
 
     /// Closure which contains the code for resoliving dependency. A closure or injection can be used
     /// to resolve a dependency but not both
-    let closure: InjectionKeyClosure?
+    let closure: ((Dependencies) throws -> T)?
 
     /// Injection-based constructor
     public required init(
         uuid: String = NSUUID().uuidString,
-        using injectionObjectType: DependencyInjection.Type,
+        using injectionObjectType: DependencyInjection<T>.Type,
         scope: InjectionScope,
         parameters: [InjectionParameterName: Any] = [:]
     ) {
-        injection = injectionObjectType.init()
+        injection = injectionObjectType<T>.init()
         self.scope = scope
         self.parameters = parameters
         closure = nil
@@ -39,7 +36,7 @@ public final class InjectionKey<T>: InjectionKeys {
         uuid: String = NSUUID().uuidString,
         scope: InjectionScope,
         parameters: [InjectionParameterName: Any] = [:],
-        closure: @escaping InjectionKeyClosure
+        closure: @escaping ((Dependencies) throws -> T)
     ) {
         self.scope = scope
         self.parameters = parameters
