@@ -1,9 +1,9 @@
 // Copyright (c) 2017-2019 Coinbase Inc. See LICENSE
 
 /// Conformers of this protocol can resolve a dependency
-public protocol DependencyInjection {
+open class DependencyInjection<T> {
     /// Default constructor
-    init()
+    public required init() {}
 
     /// Resolve dependency
     ///
@@ -11,5 +11,7 @@ public protocol DependencyInjection {
     ///     - dependencies: provider for resolving other dependencies
     ///
     /// - Returns: Instance of the requested dependency or an error is thrown
-    func provide(using dependencies: Dependencies, parameters: [InjectionParameterName: Any]) throws -> Any
+    func provide(using _: Dependencies, parameters _: [InjectionParameterName: Any]) throws -> T {
+        throw DependenciesError.injectionNotImplemented
+    }
 }

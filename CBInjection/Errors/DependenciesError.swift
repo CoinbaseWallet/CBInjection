@@ -9,4 +9,7 @@ public enum DependenciesError: Error {
 
     /// Error thrown when injection doesn't supply the correct list of parameters
     case missingParameters
+
+    /// Error thrown when injection is not implemented while resolving a key
+    case injectionNotImplemented
 }

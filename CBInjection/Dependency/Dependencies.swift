@@ -50,8 +50,8 @@ public final class Dependencies {
 
     func resolve<T>(_ key: InjectionKey<T>) throws -> T? {
         if let closure = key.closure {
-            return try closure(self) as? T
-        } else if let instance = try key.injection?.provide(using: self, parameters: key.parameters) as? T {
+            return try closure(self)
+        } else if let instance = try key.injection?.provide(using: self, parameters: key.parameters) {
             return instance
         }
 
