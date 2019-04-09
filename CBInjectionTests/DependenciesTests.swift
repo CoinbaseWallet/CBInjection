@@ -1,6 +1,6 @@
 // Copyright (c) 2017-2019 Coinbase Inc. See LICENSE
 
-@testable import CBInjection
+import CBInjection
 import XCTest
 
 private let expectedName = "Notorious B.I.G."

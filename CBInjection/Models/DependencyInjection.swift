@@ -11,7 +11,7 @@ open class DependencyInjection<T> {
     ///     - dependencies: provider for resolving other dependencies
     ///
     /// - Returns: Instance of the requested dependency or an error is thrown
-    func provide(using _: Dependencies, parameters _: [InjectionParameterName: Any]) throws -> T {
+    open func provide(using _: Dependencies, parameters _: [InjectionParameterName: Any]) throws -> T {
         throw DependenciesError.injectionNotImplemented
     }
 }
