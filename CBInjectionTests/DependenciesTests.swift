@@ -1,6 +1,6 @@
 // Copyright (c) 2017-2019 Coinbase Inc. See LICENSE
 
-import CBInjection
+@testable import CBInjection
 import XCTest
 
 private let expectedName = "Notorious B.I.G."
@@ -105,6 +105,24 @@ class DependenciesTests: XCTestCase {
         XCTAssertEqual(expectedName, actual2.transientDep.name)
 
         XCTAssertNotEqual(actual.uuid, actual2.uuid)
+    }
+
+    func testInjectioReplacement() throws {
+        let deps = Dependencies()
+        let expectedResolvedString = "Hello World"
+        let originalKey = InjectionKey<String>(scope: .transient) { _ in
+            return "OriginalKey"
+        }
+
+        let replacementKey = InjectionKey<String>(scope: .transient) { _ in
+            return expectedResolvedString
+        }
+
+        deps.replace(key: originalKey, with: replacementKey)
+
+        let actual = try deps.provide(originalKey)
+
+        XCTAssertEqual(expectedResolvedString, actual)
     }
 }
 
