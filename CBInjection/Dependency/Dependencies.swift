@@ -12,13 +12,27 @@ public final class Dependencies {
     /// Holds on to cached singletons
     private var cache = [InjectionKeys: Any]()
 
+    /// Keep internal. Used to cache injection key overrides in unit tests
+    internal var injectionKeyOverrides = [InjectionKeys: InjectionKeys]()
+
+    /// Keep internal. Used to override injection keys in unit tests
+    ///
+    /// - Parameters:
+    ///     - key: The original key to override
+    ///     - overrideKey: The override injection key
+    internal func replace<T>(key: InjectionKey<T>, with overrideKey: InjectionKey<T>) {
+        injectionKeyOverrides[key] = overrideKey
+    }
+
     /// Get injection for given injection key
     ///
     /// - Parameters:
-    ///     - key: Key specifying type of injection
+    ///     - injectionKey: Key specifying type of injection
     ///
     /// - Returns: Instance of the requested dependency or an error is thrown
-    public func provide<T>(_ key: InjectionKey<T>) throws -> T {
+    public func provide<T>(_ injectionKey: InjectionKey<T>) throws -> T {
+        let key = (injectionKeyOverrides[injectionKey] as? InjectionKey<T>) ?? injectionKey
+
         switch key.scope {
         case .singleton:
             singletonLock.lock()
