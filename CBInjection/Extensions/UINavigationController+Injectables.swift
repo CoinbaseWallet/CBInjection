@@ -21,6 +21,7 @@ public extension UINavigationController {
     ///     - animated: Animate push transition
     ///
     /// - Returns: Instance of ViewController generated using provided injection key
+    @discardableResult
     func pushViewController<T: UIViewController>(_ key: InjectionKey<T>, animated: Bool) -> T? {
         guard let viewController = try? Dependencies.shared.provide(key) else {
             assertionFailure("Unable to push view controller for key \(key)")
