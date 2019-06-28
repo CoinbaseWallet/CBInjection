@@ -19,12 +19,17 @@ public extension UINavigationController {
     /// - Parameters:
     ///     - key: Key used to create view controller
     ///     - animated: Animate push transition
-    func pushViewController<T: UIViewController>(_ key: InjectionKey<T>, animated: Bool) {
+    ///
+    /// - Returns: Instance of ViewController generated using provided injection key
+    func pushViewController<T: UIViewController>(_ key: InjectionKey<T>, animated: Bool) -> T? {
         guard let viewController = try? Dependencies.shared.provide(key) else {
-            return assertionFailure("Unable to push view controller for key \(key)")
+            assertionFailure("Unable to push view controller for key \(key)")
+            return nil
         }
 
         pushViewController(viewController, animated: animated)
+
+        return viewController
     }
 
     /// Set the navigation controller's view controllers from their injection keys
