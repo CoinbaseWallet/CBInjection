@@ -8,6 +8,7 @@ public extension UIViewController {
     /// - Parameters:
     ///     - key: Key used to create view controller
     ///     - animated: Animate present transition
+    ///     - modalPresentationStyle: Customize modal presentation
     ///     - completion: Completion block called when transition completes
     ///
     /// - Returns: Instance of ViewController generated using provided injection key
@@ -15,12 +16,15 @@ public extension UIViewController {
     func present<T: UIViewController>(
         _ key: InjectionKey<T>,
         animated: Bool,
+        modalPresentationStyle: UIModalPresentationStyle = .fullScreen,
         completion: (() -> Void)? = nil
     ) -> T? {
         guard let viewController = try? Dependencies.shared.provide(key) else {
             assertionFailure("Unable to present view controller for key \(key)")
             return nil
         }
+
+        viewController.modalPresentationStyle = modalPresentationStyle
 
         present(viewController, animated: animated, completion: completion)
 
