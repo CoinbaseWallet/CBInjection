@@ -16,7 +16,7 @@ public extension UIViewController {
     func present<T: UIViewController>(
         _ key: InjectionKey<T>,
         animated: Bool,
-        modalPresentationStyle: UIModalPresentationStyle = .fullScreen,
+        modalPresentationStyle: UIModalPresentationStyle = .overFullScreen,
         completion: (() -> Void)? = nil
     ) -> T? {
         guard let viewController = try? Dependencies.shared.provide(key) else {
