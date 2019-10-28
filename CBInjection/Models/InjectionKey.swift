@@ -3,7 +3,7 @@
 import Foundation
 
 /// Represents and injection key used indentify a dependency.
-public final class InjectionKey<T>: InjectionKeys {
+public class InjectionKey<T>: InjectionKeys {
     /// Injection which contains the code for resolving a dependency
     let injection: DependencyInjection<T>?
 
@@ -32,14 +32,13 @@ public final class InjectionKey<T>: InjectionKeys {
     }
 
     /// Closure-based constructor
-    public init(
+    public required init(
         uuid: String = NSUUID().uuidString,
         scope: InjectionScope,
-        parameters: [InjectionParameterName: Any] = [:],
         closure: @escaping ((Dependencies) throws -> T)
     ) {
         self.scope = scope
-        self.parameters = parameters
+        self.parameters = [:]
         self.closure = closure
         injection = nil
         super.init(uuid: uuid)

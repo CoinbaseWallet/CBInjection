@@ -13,18 +13,17 @@ public extension UIViewController {
     ///
     /// - Returns: Instance of ViewController generated using provided injection key
     @discardableResult
-    func present<T: UIViewController>(
-        _ key: InjectionKey<T>,
+    func present(
+        _ key: ViewControllerInjectionKey,
         animated: Bool,
-        modalPresentationStyle: UIModalPresentationStyle = .fullScreen,
         completion: (() -> Void)? = nil
-    ) -> T? {
+    ) -> UIViewController? {
         guard let viewController = try? Dependencies.shared.provide(key) else {
             assertionFailure("Unable to present view controller for key \(key)")
             return nil
         }
 
-        viewController.modalPresentationStyle = modalPresentationStyle
+        viewController.modalPresentationStyle = key.modalPresentationStyle
 
         present(viewController, animated: animated, completion: completion)
 
@@ -37,7 +36,7 @@ public extension UIViewController {
     ///     - key: Key used to create view controller
     ///
     /// - Returns: Instance of ViewController generated using provided injection key
-    func addChild<T: UIViewController>(_ key: InjectionKey<T>) -> T? {
+    func addChild(_ key: ViewControllerInjectionKey) -> UIViewController? {
         guard let viewController = try? Dependencies.shared.provide(key) else {
             assertionFailure("Unable to present view controller for key \(key)")
             return nil
