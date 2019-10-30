@@ -6,7 +6,7 @@ public extension UINavigationController {
     /// Initialize the navigation controller with an injected root view controller
     ///
     /// - Parameter rootViewControllerKey: the injection key for the root view controller
-    convenience init(rootViewControllerKey: InjectionKey<UIViewController>) {
+    convenience init(rootViewControllerKey: ViewControllerInjectionKey) {
         guard let viewController = try? Dependencies.shared.provide(rootViewControllerKey) else {
             fatalError("View controller not found")
         }
@@ -22,7 +22,7 @@ public extension UINavigationController {
     ///
     /// - Returns: Instance of ViewController generated using provided injection key
     @discardableResult
-    func pushViewController<T: UIViewController>(_ key: InjectionKey<T>, animated: Bool) -> T? {
+    func pushViewController(_ key: ViewControllerInjectionKey, animated: Bool) -> UIViewController? {
         guard let viewController = try? Dependencies.shared.provide(key) else {
             assertionFailure("Unable to push view controller for key \(key)")
             return nil
@@ -38,7 +38,7 @@ public extension UINavigationController {
     /// - Parameters:
     ///   - keys: Injection keys for the view controllers
     ///   - animated: true if the transition should be animated
-    func setViewControllers<T: UIViewController>(_ keys: [InjectionKey<T>], animated: Bool) {
+    func setViewControllers(_ keys: [ViewControllerInjectionKey], animated: Bool) {
         let viewControllers = keys.compactMap { key -> UIViewController? in
             guard let viewController: UIViewController = try? Dependencies.shared.provide(key) else {
                 assertionFailure("Unable to push view controller for key \(key)")
@@ -58,7 +58,7 @@ public extension UINavigationController {
     ///   - animated: true if the transition should be animated
     ///
     /// - Returns: Instance of ViewController generated using provided injection key
-    func setRootViewController<T: UIViewController>(_ key: InjectionKey<T>, animated: Bool) -> T? {
+    func setRootViewController(_ key: ViewControllerInjectionKey, animated: Bool) -> UIViewController? {
         guard let viewController = try? Dependencies.shared.provide(key) else {
             assertionFailure("Unable to push view controller for key \(key)")
             return nil

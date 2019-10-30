@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D30B80852367A32000D3D508 /* ViewControllerInjectionKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30B80842367A32000D3D508 /* ViewControllerInjectionKey.swift */; };
 		E74DE55C22333E83008CC5EE /* CBInjection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E74DE55222333E83008CC5EE /* CBInjection.framework */; };
 		E74DE56122333E83008CC5EE /* DependenciesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74DE56022333E83008CC5EE /* DependenciesTests.swift */; };
 		E74DE57D22333F9D008CC5EE /* InjectionParameterName.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74DE56D22333F9D008CC5EE /* InjectionParameterName.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D30B80842367A32000D3D508 /* ViewControllerInjectionKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerInjectionKey.swift; sourceTree = "<group>"; };
 		E74DE55222333E83008CC5EE /* CBInjection.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CBInjection.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E74DE55B22333E83008CC5EE /* CBInjectionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CBInjectionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E74DE56022333E83008CC5EE /* DependenciesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependenciesTests.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 				E74DE56D22333F9D008CC5EE /* InjectionParameterName.swift */,
 				E74DE56E22333F9D008CC5EE /* InjectionKey.swift */,
 				E74DE56F22333F9D008CC5EE /* InjectionScope.swift */,
+				D30B80842367A32000D3D508 /* ViewControllerInjectionKey.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 				E74DE58322333F9D008CC5EE /* UINavigationController+Injectables.swift in Sources */,
 				E74DE57D22333F9D008CC5EE /* InjectionParameterName.swift in Sources */,
 				E74DE57F22333F9D008CC5EE /* InjectionScope.swift in Sources */,
+				D30B80852367A32000D3D508 /* ViewControllerInjectionKey.swift in Sources */,
 				E74DE58722333F9D008CC5EE /* Dependencies.swift in Sources */,
 				E74DE58422333F9D008CC5EE /* UIViewController+Injectables.swift in Sources */,
 				E74DE57E22333F9D008CC5EE /* InjectionKey.swift in Sources */,
